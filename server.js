@@ -66,6 +66,15 @@ app.delete('/api/photos/:id', async (req, res) => {
         res.json({ message: 'תמונה נמחקה' });
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
+const path = require('path');
+
+// הגדרה שמאפשרת לשרת להגיש קבצים סטטיים מהתיקייה של האתר
+app.use(express.static(path.join(__dirname, 'frontend')));
+
+// כל פנייה אחרת (שלא מתחילה ב-/api) תשלח את ה-index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`🚀 השרת רץ על פורט ${PORT}`);
