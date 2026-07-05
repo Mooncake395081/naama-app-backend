@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://naama-app.onrender.com/api';
 
 let currentFilter = 'all';
 let selectedFormCategory = 'anniversary';
