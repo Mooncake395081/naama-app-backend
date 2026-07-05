@@ -42,11 +42,17 @@ app.delete('/api/photos/:id', async (req, res) => {
     try { await Photo.findByIdAndDelete(req.params.id); res.json({ message: 'תמונה נמחקה' }); } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
-// הגשת האתר - תיקון ל-Express 5
-app.use(express.static(path.join(__dirname, 'frontend')));
+// הגשת האתר
+const frontendPath = path.join(__dirname, 'frontend');
+app.use(express.static(frontendPath));
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+// הניתוב שעוקף את הבעיה של אקספרס 5
+app.use((req, res, next) => {
+    if (!req.path.startsWith('/api')) {
+        res.sendFile(path.join(frontendPath, 'index.html'));
+    } else {
+        next();
+    }
 });
 
 app.listen(PORT, () => {
