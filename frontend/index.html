@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הברכות של נעמה 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">הפינה של נעמה ❤️</div>
+        <nav class="main-tabs">
+            <button class="tab-btn active" id="tab-greetings" onclick="switchView('greetings')">קיר ברכות 💌</button>
+            <button class="tab-btn" id="tab-gallery" onclick="switchView('gallery')">גלריה 📸</button>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div id="greetingsView" class="view-section active">
+
+            <div class="categories-wrapper">
+                <nav class="categories-nav">
+                    <button class="nav-btn active" onclick="filterGreetings('all')">הכל</button>
+                    <button class="nav-btn" onclick="filterGreetings('general')">סתם כי בא לי 💭</button>
+                    <button class="nav-btn" onclick="filterGreetings('birthday')">ימי הולדת 🎂</button>
+                    <button class="nav-btn" onclick="filterGreetings('anniversary')">ימי שנה 🥂</button>
+                    <button class="nav-btn" onclick="filterGreetings('love')">ימי אהבה 🥰</button>
+                </nav>
+            </div>
+
+            <div class="add-card">
+                <h3>כתוב ברכה חדשה ✨</h3>
+                <div class="category-selector">
+                    <div class="chip-group">
+                        <button class="chip-btn" data-value="general" onclick="selectFormCategory('general')">סתם כי בא
+                            לי 💭</button>
+                        <button class="chip-btn active" data-value="anniversary"
+                            onclick="selectFormCategory('anniversary')">יום שנה 🥂</button>
+                        <button class="chip-btn" data-value="birthday" onclick="selectFormCategory('birthday')">יום
+                            הולדת 🎂</button>
+                        <button class="chip-btn" data-value="love" onclick="selectFormCategory('love')">יום אהבה
+                            🥰</button>
+                    </div>
+                </div>
+                <textarea id="greetingText" placeholder="רשום לה משהו מהלב..."></textarea>
+                <div class="form-footer">
+                    <button class="submit-btn" onclick="addGreeting()">הוסף ברכה לקיר</button>
+                </div>
+            </div>
+
+            <div id="greetingsContainer" class="greetings-grid"></div>
+        </div>
+
+        <div id="galleryView" class="view-section">
+
+            <div class="add-card upload-card">
+                <h3>הוסף תמונה חדשה לזיכרונות שלנו 📸</h3>
+                <div class="upload-area">
+                    <label for="photoUpload" class="upload-btn">בחר תמונה</label>
+                    <input type="file" id="photoUpload" accept="image/*" onchange="handlePhotoUpload(event)"
+                        style="display: none;">
+                </div>
+            </div>
+
+            <div id="galleryContainer" class="gallery-grid"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
